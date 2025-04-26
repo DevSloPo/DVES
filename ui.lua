@@ -435,7 +435,7 @@ local function ButtonFrame(Instance, Title, Description, HolderSize)
 		AnchorPoint = Vector2.new(0, 0.5),
 		BackgroundTransparency = 1,
 		TextTruncate = "AtEnd",
-		TextSize = 10,
+		TextSize = 15,
 		TextXAlignment = "Left",
 		Text = "",
 		RichText = true
@@ -449,7 +449,7 @@ local function ButtonFrame(Instance, Title, Description, HolderSize)
 		Position = UDim2.new(0, 12, 0, 15),
 		BackgroundTransparency = 1,
 		TextWrapped = true,
-		TextSize = 8,
+		TextSize = 15,
 		TextXAlignment = "Left",
 		Text = "",
 		RichText = true
@@ -629,7 +629,7 @@ function redzlib:MakeWindow(Configs)
 		AutomaticSize = "XY",
 		Text = WTitle,
 		TextXAlignment = "Left",
-		TextSize = 12,
+		TextSize = 25,
 		TextColor3 = Theme["Color Text"],
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
@@ -645,7 +645,7 @@ function redzlib:MakeWindow(Configs)
 			BackgroundTransparency = 1,
 			TextXAlignment = "Left",
 			TextYAlignment = "Bottom",
-			TextSize = 8,
+			TextSize = 15,
 			Font = Enum.Font.Gotham,
 			Name = "SubTitle"
 		}), "DarkText")
@@ -857,7 +857,7 @@ function redzlib:MakeWindow(Configs)
 				Text = DText,
 				TextXAlignment = "Left",
 				TextColor3 = Theme["Color Dark Text"],
-				TextSize = 12,
+				TextSize = 15,
 				Position = UDim2.fromOffset(15, 25),
 				BackgroundTransparency = 1,
 				TextWrapped = true
@@ -962,7 +962,7 @@ function redzlib:MakeWindow(Configs)
 			Font = Enum.Font.GothamMedium,
 			Text = TName,
 			TextColor3 = Theme["Color Text"],
-			TextSize = 10,
+			TextSize = 15,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextTransparency = (FirstTab and 0.3) or 0,
 			TextTruncate = "AtEnd"
@@ -1073,7 +1073,7 @@ function redzlib:MakeWindow(Configs)
 				Position = UDim2.new(0, 5),
 				BackgroundTransparency = 1,
 				TextTruncate = "AtEnd",
-				TextSize = 14,
+				TextSize = 15,
 				TextXAlignment = "Left"
 			}), "Text")
 			
@@ -1623,7 +1623,7 @@ function redzlib:MakeWindow(Configs)
 				BackgroundTransparency = 1,
 				TextColor3 = Theme["Color Text"],
 				Font = Enum.Font.FredokaOne,
-				TextSize = 12
+				TextSize = 15
 			}), "Text")
 			
 			local UIScale = Create("UIScale", LabelVal)
@@ -1816,7 +1816,7 @@ function redzlib:MakeWindow(Configs)
 				TextColor3 = Theme["Color Text"],
 				TextXAlignment = "Left",
 				BackgroundTransparency = 1,
-				TextSize = 10,
+				TextSize = 15,
 				Text = Title
 			}), "Text")
 			
@@ -1829,7 +1829,7 @@ function redzlib:MakeWindow(Configs)
 				TextColor3 = Theme["Color Dark Text"],
 				TextXAlignment = "Left",
 				BackgroundTransparency = 1,
-				TextSize = 8,
+				TextSize = 15,
 				Text = Desc
 			}), "DarkText")
 			
@@ -1839,7 +1839,7 @@ function redzlib:MakeWindow(Configs)
 				Position = UDim2.new(0.5, 0, 1, -7),
 				Text = "Join",
 				Font = Enum.Font.GothamBold,
-				TextSize = 12,
+				TextSize = 15,
 				TextColor3 = Color3.fromRGB(220, 220, 220),
 				BackgroundColor3 = Color3.fromRGB(50, 150, 50)
 			})Make("Corner", JoinButton, UDim.new(0, 5))
