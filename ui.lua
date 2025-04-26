@@ -128,7 +128,7 @@ local SetProps, SetChildren, InsertTheme, Create do
 		end
 	end
 	
-	pcall(Save, "redz library V5.json")
+	pcall(Save, "XiaoXuanZang.json")
 end
 
 local Funcs = {} do
@@ -270,7 +270,7 @@ local GetFlag, SetFlag, CheckFlag do
 end
 
 local ScreenGui = Create("ScreenGui", CoreGui, {
-	Name = "redz Library V5",
+	Name = "XiaoXuanZang",
 }, {
 	Create("UIScale", {
 		Scale = UIScale,
@@ -378,13 +378,6 @@ local function Make(Ele, Instance, props, ...)
 	local Element = redzlib.Elements[Ele](Instance, props, ...)
 	return Element
 end
-
-AddEle("Corner", function(parent, CornerRadius)
-	local New = SetProps(Create("UICorner", parent, {
-		CornerRadius = CornerRadius or UDim.new(0, 7)
-	}), props)
-	return New
-end)
 
 AddEle("Stroke", function(parent, props, ...)
 	local args = {...}
@@ -546,7 +539,7 @@ function redzlib:SetTheme(NewTheme)
 	if not VerifyTheme(NewTheme) then return end
 	
 	redzlib.Save.Theme = NewTheme
-	SaveJson("redz library V5.json", redzlib.Save)
+	SaveJson("XiaoXuanZang.json", redzlib.Save)
 	Theme = redzlib.Themes[NewTheme]
 	
 	Comnection:FireConnection("ThemeChanged", NewTheme)
@@ -575,7 +568,7 @@ function redzlib:SetScale(NewScale)
 end
 
 function redzlib:MakeWindow(Configs)
-	local WTitle = Configs[1] or Configs.Name or Configs.Title or "redz Library V5"
+	local WTitle = Configs[1] or Configs.Name or Configs.Title or "XiaoXuanZang"
 	local WMiniText = Configs[2] or Configs.SubTitle or "by : redz9999"
 	
 	Settings.ScriptFile = Configs[3] or Configs.SaveFolder or false
@@ -684,22 +677,6 @@ function redzlib:MakeWindow(Configs)
 		Name = "Containers"
 	})
 	
-	local ControlSize1, ControlSize2 = MakeDrag(Create("ImageButton", MainFrame, {
-		Size = UDim2.new(0, 35, 0, 35),
-		Position = MainFrame.Size,
-		Active = true,
-		AnchorPoint = Vector2.new(0.8, 0.8),
-		BackgroundTransparency = 1,
-		Name = "Control Hub Size"
-	})), MakeDrag(Create("ImageButton", MainFrame, {
-		Size = UDim2.new(0, 20, 1, -30),
-		Position = UDim2.new(0, MainScroll.Size.X.Offset, 1, 0),
-		AnchorPoint = Vector2.new(0.5, 1),
-		Active = true,
-		BackgroundTransparency = 1,
-		Name = "Control Tab Size"
-	}))
-	
 	local function ControlSize()
 		local Pos1, Pos2 = ControlSize1.Position, ControlSize2.Position
 		ControlSize1.Position = UDim2.fromOffset(math.clamp(Pos1.X.Offset, 430, 1000), math.clamp(Pos1.Y.Offset, 200, 500))
@@ -716,13 +693,13 @@ function redzlib:MakeWindow(Configs)
 	ConnectSave(ControlSize1, function()
 		if not Minimized then
 			redzlib.Save.UISize = {MainFrame.Size.X.Offset, MainFrame.Size.Y.Offset}
-			SaveJson("redz library V5.json", redzlib.Save)
+			SaveJson("XiaoXuanZang.json", redzlib.Save)
 		end
 	end)
 	
 	ConnectSave(ControlSize2, function()
 		redzlib.Save.TabSize = MainScroll.Size.X.Offset
-		SaveJson("redz library V5.json", redzlib.Save)
+		SaveJson("XiaoXuanZang.json", redzlib.Save)
 	end)
 	
 	local ButtonsFolder = Create("Folder", TopBar, {
