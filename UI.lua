@@ -758,8 +758,7 @@ function redzlib:MakeWindow(Configs)
 			Text = "你确定要删除UI吗",
 			Options = {
 				{"确定", function()
-					ScreenGui:Destroy()
-					game:GetService("CoreGui").XiaoXuanZang:Destroy()
+					ScreenGui:Destroy()				
 				end},
 				{"取消"}
 			}
