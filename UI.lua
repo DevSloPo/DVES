@@ -729,8 +729,8 @@ function redzlib:MakeWindow(Configs)
 		Name = "Buttons"
 	})
 	
-	local CloseButton = Create("ImageButton", {
-		Size = UDim2.new(0, 25 0, 25),
+    local CloseButton = Create("ImageButton", {
+		Size = UDim2.new(0, 14, 0, 14),
 		Position = UDim2.new(1, -10, 0.5),
 		AnchorPoint = Vector2.new(1, 0.5),
 		BackgroundTransparency = 1,
@@ -754,11 +754,12 @@ function redzlib:MakeWindow(Configs)
 	local Window, FirstTab = {}, false
 	function Window:CloseBtn()
 		local Dialog = Window:Dialog({
-			Title = "删除UI",
-			Text = "你确定要删除UI吗",
+			Title = "关闭",
+			Text = "你确认要关闭UI吗Httadmin脚本会随时欢迎你使用",
 			Options = {
 				{"确定", function()
-					ScreenGui:Destroy()				
+					ScreenGui:Destroy()
+					game:GetService("CoreGui").XiaoXuanZang:Destroy()
 				end},
 				{"取消"}
 			}
