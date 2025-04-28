@@ -19,12 +19,6 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
 			["Color Theme"] = Color3.fromRGB(0, 255, 255),
-            local startTime = tick()local startTime = tick()
-            while true do
-            local hue = (tick() - startTime) % 5 / 5  -- 5秒循环周期
-            ["Color title"] = Color3.fromHSV(hue, 1, 1)
-            wait(0.05)  -- 更新间隔
-            end
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
 			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
 		},
@@ -37,12 +31,6 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
 			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
 			["Color Theme"] = Color3.fromRGB(65, 150, 255),
-            local startTime = tick()local startTime = tick()
-            while true do
-            local hue = (tick() - startTime) % 5 / 5  -- 5秒循环周期
-            ["Color title"] = Color3.fromHSV(hue, 1, 1)
-            wait(0.05)  -- 更新间隔
-            end
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
 			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
 		},
@@ -55,12 +43,6 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
 			["Color Theme"] = Color3.fromRGB(150, 0, 255),
-            local startTime = tick()local startTime = tick()
-            while true do
-            local hue = (tick() - startTime) % 5 / 5  -- 5秒循环周期
-            ["Color title"] = Color3.fromHSV(hue, 1, 1)
-            wait(0.05)  -- 更新间隔
-            end
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
 			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
 		}
@@ -641,33 +623,45 @@ function redzlib:MakeWindow(Configs)
 		Name = "Top Bar"
 	})
 	
-	local Title = InsertTheme(Create("TextLabel", TopBar, {
-		Position = UDim2.new(0, 15, 0.5),
-		AnchorPoint = Vector2.new(0, 0.5),
-		AutomaticSize = "XY",
-		Text = WTitle,
-		TextXAlignment = "Left",
-		TextSize = 25,
-        TextColor3 = Theme["Color title"],
-		BackgroundTransparency = 1,
-		Font = Enum.Font.GothamMedium,
-		Name = "Title"
-	}, {
-		InsertTheme(Create("TextLabel", {
-			Size = UDim2.fromScale(0, 1),
-			AutomaticSize = "X",
-			AnchorPoint = Vector2.new(0, 1),
-			Position = UDim2.new(1, 5, 0.9),
-			Text = WMiniText,
-			TextColor3 = Theme["Color Dark Text"],
-			BackgroundTransparency = 1,
-			TextXAlignment = "Left",
-			TextYAlignment = "Bottom",
-			TextSize = 15,
-			Font = Enum.Font.Gotham,
-			Name = "SubTitle"
-		}), "DarkText")
-	}), "Text")
+local Title = InsertTheme(Create("TextLabel", TopBar, {
+    Position = UDim2.new(0, 15, 0.5),
+    AnchorPoint = Vector2.new(0, 0.5),
+    AutomaticSize = "XY",
+    Text = WTitle,
+    TextXAlignment = "Left",
+    TextSize = 25,
+    
+    BackgroundTransparency = 1,
+    Font = Enum.Font.GothamMedium,
+    Name = "Title"
+}, {
+    InsertTheme(Create("TextLabel", {
+        Size = UDim2.fromScale(0, 1),
+        AutomaticSize = "X",
+        AnchorPoint = Vector2.new(0, 1),
+        Position = UDim2.new(1, 5, 0.9),
+        Text = WMiniText,
+        TextColor3 = Theme["Color Dark Text"],
+        BackgroundTransparency = 1,
+        TextXAlignment = "Left",
+        TextYAlignment = "Bottom",
+        TextSize = 15,
+        Font = Enum.Font.Gotham,
+        Name = "SubTitle"
+    }), "DarkText")
+}), "Text")
+
+local RunService = game:GetService("RunService")
+local hue = 0
+
+local connection = RunService.Heartbeat:Connect(function(deltaTime)
+    hue = (hue + deltaTime * 0.5) % 1 
+    Title.TextColor3 = Color3.fromHSV(hue, 1, 1)
+end)
+
+Title.Destroying:Connect(function()
+    connection:Disconnect()
+end)
 	
 	local MainScroll = InsertTheme(Create("ScrollingFrame", Components, {
 		Size = UDim2.new(0, redzlib.Save.TabSize, 1, -TopBar.Size.Y.Offset),
