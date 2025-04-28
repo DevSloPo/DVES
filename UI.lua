@@ -19,7 +19,12 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
 			["Color Theme"] = Color3.fromRGB(0, 255, 255),
-            ["Color title"] = Color3.fromRGB(0, 255, 255),
+            local startTime = tick()local startTime = tick()
+            while true do
+            local hue = (tick() - startTime) % 5 / 5  -- 5秒循环周期
+            ["Color title"] = Color3.fromHSV(hue, 1, 1)
+            wait(0.05)  -- 更新间隔
+            end
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
 			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
 		},
@@ -32,7 +37,12 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
 			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
 			["Color Theme"] = Color3.fromRGB(65, 150, 255),
-            ["Color title"] = Color3.fromRGB(0, 255, 255),
+            local startTime = tick()local startTime = tick()
+            while true do
+            local hue = (tick() - startTime) % 5 / 5  -- 5秒循环周期
+            ["Color title"] = Color3.fromHSV(hue, 1, 1)
+            wait(0.05)  -- 更新间隔
+            end
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
 			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
 		},
@@ -45,7 +55,12 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
 			["Color Theme"] = Color3.fromRGB(150, 0, 255),
-            ["Color title"] = Color3.fromRGB(0, 255, 255),
+            local startTime = tick()local startTime = tick()
+            while true do
+            local hue = (tick() - startTime) % 5 / 5  -- 5秒循环周期
+            ["Color title"] = Color3.fromHSV(hue, 1, 1)
+            wait(0.05)  -- 更新间隔
+            end
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
 			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
 		}
