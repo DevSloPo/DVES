@@ -19,8 +19,9 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
 			["Color Theme"] = Color3.fromRGB(0, 255, 255),
+			["Color XiaoXuanZang"] = Color3.fromRGB(255, 255, 0),
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
-			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
+			["Color Dark Text"] = Color3.fromRGB(255, 255, 255)
 		},
 		Dark = {
 			["Color Hub 1"] = ColorSequence.new({
@@ -31,8 +32,9 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
 			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
 			["Color Theme"] = Color3.fromRGB(65, 150, 255),
+			["Color XiaoXuanZang"] = Color3.fromRGB(255, 255, 0),
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
-			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
+			["Color Dark Text"] = Color3.fromRGB(255, 255, 255)
 		},
 		Purple = {
 			["Color Hub 1"] = ColorSequence.new({
@@ -43,8 +45,9 @@ local redzlib = {
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
 			["Color Theme"] = Color3.fromRGB(150, 0, 255),
+			["Color XiaoXuanZang"] = Color3.fromRGB(255, 255, 0),
 			["Color Text"] = Color3.fromRGB(255, 255, 255),
-			["Color Dark Text"] = Color3.fromRGB(255, 255, 0)
+			["Color Dark Text"] = Color3.fromRGB(255, 255, 255)
 		}
 	},
 	Info = {
@@ -641,7 +644,7 @@ local Title = InsertTheme(Create("TextLabel", TopBar, {
         AnchorPoint = Vector2.new(0, 1),
         Position = UDim2.new(1, 5, 0.9),
         Text = WMiniText,
-        TextColor3 = Theme["Color Dark Text"],
+        TextColor3 = Theme["Color XiaoXuanZang"],
         BackgroundTransparency = 1,
         TextXAlignment = "Left",
         TextYAlignment = "Bottom",
@@ -767,7 +770,7 @@ end)
 	function Window:CloseBtn()
 		local Dialog = Window:Dialog({
 			Title = "关闭",
-			Text = "你确认要关闭UI吗Httadmin脚本会随时欢迎你使用",
+			Text = "你确认要关闭UI吗",
 			Options = {
 				{"确定", function()
 					ScreenGui:Destroy()
