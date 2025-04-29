@@ -137,7 +137,7 @@ Title.Position = UDim2.new(1, 0, 0, 0)
 Title.Size = UDim2.new(1, -12, 1, 0)
 Title.Font = Enum.Font.GothamSemibold
 Title.Text = "Notification"
-Title.TextColor3 = Color3.fromRGB(240, 240, 240) 
+Title.TextColor3 = Color3.fromRGB(240, 240, 240)
 Title.TextSize = 14.000
 Title.TextWrapped = true
 Title.TextXAlignment = Enum.TextXAlignment.Left
@@ -145,11 +145,9 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 spawn(function()
     local hue = 0
     while true do
-       
         Title.TextColor3 = Color3.fromHSV(hue, 1, 0.94)
-        
         hue = (hue + 0.005) % 1
-        wait(0.1) 
+        wait(0.1)
     end
 end)
 
@@ -190,7 +188,7 @@ UIPadding_2.Parent = Body
 UIPadding_2.PaddingBottom = UDim.new(0, 12)
 UIPadding_2.PaddingLeft = UDim.new(0, 12)
 UIPadding_2.PaddingRight = UDim.new(0, 12)
-UIPadding_2.PaddingTop = UDim.new(0, 0)
+UIPadding_2.PaddingTop = UDim.new(0, 12)
 
 UISizeConstraint.Parent = Container
 UISizeConstraint.MaxSize = Vector2.new(math.huge, 120)
@@ -207,7 +205,6 @@ end
 
 local T = game:GetService('TweenService')
 local t = TweenInfo.new(0.5, Enum.EasingStyle.Quint)
-local tp = NotificationParent
 
 function prompt(title, text, closeTime, close)
     local Prompt = Notification:Clone()
@@ -233,7 +230,6 @@ function prompt(title, text, closeTime, close)
     Prompt.Container.Top.Exit.Visible = close
 
     wait(1)
-
     Sound:Destroy()
     
     spawn(function()
