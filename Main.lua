@@ -13,7 +13,7 @@ local activeNotifications = {}
 
 local CONFIG = {
     WIDTH = 280,
-    HEIGHT = 100,
+    HEIGHT = 50,
     SPACING = 8,
     OFFSET = Vector2.new(20, 20),
     BACKGROUND_TRANSPARENCY = 0.5,
