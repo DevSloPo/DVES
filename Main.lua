@@ -12,32 +12,31 @@ local GUI_NAME = "NotificationGui"
 local activeNotifications = {}
 
 local CONFIG = {
-    WIDTH = 250,
-    HEIGHT = 75,
+    WIDTH = 280,
+    HEIGHT = 100,
     SPACING = 8,
     OFFSET = Vector2.new(20, 20),
     BACKGROUND_TRANSPARENCY = 0.5,
-    CORNER_RADIUS = 2,
+    CORNER_RADIUS = 4,
     PROGRESS_BAR = {
-        HEIGHT = 4,
-        COLOR = Color3.fromRGB(0, 255, 0),
-        CORNER_RADIUS = 1
+        HEIGHT = 6,
+        CORNER_RADIUS = 3
     },
     TITLE = {
         FONT = Enum.Font.GothamBold,
-        SIZE = 18,
+        SIZE = 20,
         COLOR = Color3.fromRGB(255, 255, 255),
-        OFFSET = 8
+        OFFSET = 10
     },
     MESSAGE = {
         FONT = Enum.Font.Gotham,
-        SIZE = 14,
+        SIZE = 16,
         COLOR = Color3.fromRGB(220, 220, 220),
-        OFFSET = 30
+        OFFSET = 40
     },
     ICON = {
-        SIZE = UDim2.new(0, 24, 0, 24),
-        OFFSET = 8
+        SIZE = UDim2.new(0, 32, 0, 32),
+        OFFSET = 10
     },
     ANIMATION = {
         DURATION = 0.3,
@@ -45,6 +44,22 @@ local CONFIG = {
         EASING_DIRECTION = Enum.EasingDirection.Out
     }
 }
+
+local function HSVtoRGB(h, s, v)
+    local c = v * s
+    local x = c * (1 - math.abs((h / 60) % 2 - 1))
+    local m = v - c
+    local r, g, b = 0, 0, 0
+    if h < 60 then r, g, b = c, x, 0
+    elseif h < 120 then r, g, b = x, c, 0
+    elseif h < 180 then r, g, b = 0, c, x
+    elseif h < 240 then r, g, b = 0, x, c
+    elseif h < 300 then r, g, b = x, 0, c
+    else r, g, b = c, 0, x end
+    return Color3.new(r + m, g + m, b + m)
+end
+
+local SCALE = 0.9
 
 local function initializeGui()
     local player = Players.LocalPlayer
@@ -62,8 +77,6 @@ local function initializeGui()
     return gui
 end
 
-local SCALE = 0.8
-
 local function updateNotificationsPosition()
     for index, notification in ipairs(activeNotifications) do
         local yOffset = (CONFIG.HEIGHT * SCALE + CONFIG.SPACING) * (index - 1)
@@ -75,34 +88,6 @@ local function updateNotificationsPosition()
             true
         )
     end
-end
-
-local function createProgressAnimation(frame, duration)
-    local progressBar = Instance.new("Frame")
-    progressBar.Size = UDim2.new(1, 0, 0, CONFIG.PROGRESS_BAR.HEIGHT * SCALE)
-    progressBar.Position = UDim2.new(0, 0, 1, -(CONFIG.PROGRESS_BAR.HEIGHT * SCALE))
-    progressBar.BackgroundTransparency = 1
-    progressBar.ClipsDescendants = true
-    progressBar.ZIndex = 11
-    progressBar.Parent = frame
-
-    local fill = Instance.new("Frame")
-    fill.Size = UDim2.new(1, 0, 1, 0)
-    fill.Position = UDim2.new(0, 0, 0, 0)
-    fill.AnchorPoint = Vector2.new(0, 0)
-    fill.BackgroundColor3 = Color3.new(1, 0, 0)
-    fill.ZIndex = 12
-    fill.Parent = progressBar
-
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, CONFIG.PROGRESS_BAR.CORNER_RADIUS)
-    corner.Parent = fill
-
-    TweenService:Create(fill, TweenInfo.new(duration, Enum.EasingStyle.Linear), {
-        Size = UDim2.new(0, 0, 1, 0)
-    }):Play()
-
-    return nil
 end
 
 function Httadmin.send(title, message, duration, iconId)
@@ -141,20 +126,20 @@ function Httadmin.send(title, message, duration, iconId)
     local iconOffset = 0
     if iconId then
         local icon = Instance.new("ImageLabel")
-        icon.Size = UDim2.new(0, 24 * SCALE, 0, 24 * SCALE)
+        icon.Size = UDim2.new(0, 32 * SCALE, 0, 32 * SCALE)
         icon.Position = UDim2.new(0, CONFIG.ICON.OFFSET * SCALE, 0, CONFIG.ICON.OFFSET * SCALE)
         icon.BackgroundTransparency = 1
         icon.Image = iconId
         icon.ImageTransparency = 1
         icon.ZIndex = 11
         icon.Parent = frame
-        iconOffset = 40 * SCALE
+        iconOffset = 48 * SCALE
         TweenService:Create(icon, TweenInfo.new(CONFIG.ANIMATION.DURATION), {ImageTransparency = 0}):Play()
     end
 
     local titleLabel = Instance.new("TextLabel")
-    titleLabel.Size = UDim2.new(1, -(iconOffset + 8 * SCALE), 0, 24 * SCALE)
-    titleLabel.Position = UDim2.new(0, iconOffset > 0 and (40 * SCALE) or (8 * SCALE), 0, CONFIG.TITLE.OFFSET * SCALE)
+    titleLabel.Size = UDim2.new(1, -(iconOffset + 10 * SCALE), 0, 28 * SCALE)
+    titleLabel.Position = UDim2.new(0, iconOffset > 0 and (48 * SCALE) or (10 * SCALE), 0, CONFIG.TITLE.OFFSET * SCALE)
     titleLabel.BackgroundTransparency = 1
     titleLabel.Text = title or "Notification"
     titleLabel.Font = CONFIG.TITLE.FONT
@@ -166,8 +151,8 @@ function Httadmin.send(title, message, duration, iconId)
     titleLabel.Parent = frame
 
     local messageLabel = Instance.new("TextLabel")
-    messageLabel.Size = UDim2.new(1, -(iconOffset + 8 * SCALE), 1, -32 * SCALE)
-    messageLabel.Position = UDim2.new(0, iconOffset > 0 and (40 * SCALE) or (8 * SCALE), 0, CONFIG.MESSAGE.OFFSET * SCALE)
+    messageLabel.Size = UDim2.new(1, -(iconOffset + 10 * SCALE), 1, -40 * SCALE)
+    messageLabel.Position = UDim2.new(0, iconOffset > 0 and (48 * SCALE) or (10 * SCALE), 0, CONFIG.MESSAGE.OFFSET * SCALE)
     messageLabel.BackgroundTransparency = 1
     messageLabel.Text = message or ""
     messageLabel.Font = CONFIG.MESSAGE.FONT
@@ -183,7 +168,40 @@ function Httadmin.send(title, message, duration, iconId)
     TweenService:Create(titleLabel, TweenInfo.new(CONFIG.ANIMATION.DURATION), {TextTransparency = 0}):Play()
     TweenService:Create(messageLabel, TweenInfo.new(CONFIG.ANIMATION.DURATION), {TextTransparency = 0}):Play()
 
-    local progressConnection = createProgressAnimation(frame, duration)
+    local progressBar = Instance.new("Frame")
+    progressBar.Size = UDim2.new(1, 0, 0, CONFIG.PROGRESS_BAR.HEIGHT * SCALE)
+    progressBar.Position = UDim2.new(0, 0, 1, -(CONFIG.PROGRESS_BAR.HEIGHT * SCALE))
+    progressBar.BackgroundTransparency = 1
+    progressBar.ClipsDescendants = true
+    progressBar.ZIndex = 11
+    progressBar.Parent = frame
+
+    local fill = Instance.new("Frame")
+    fill.Size = UDim2.new(1, 0, 1, 0)
+    fill.Position = UDim2.new(0, 0, 0, 0)
+    fill.AnchorPoint = Vector2.new(0, 0)
+    fill.BackgroundColor3 = Color3.new(1, 0, 0)
+    fill.ZIndex = 12
+    fill.Parent = progressBar
+
+    local cornerFill = Instance.new("UICorner")
+    cornerFill.CornerRadius = UDim.new(0, CONFIG.PROGRESS_BAR.CORNER_RADIUS)
+    cornerFill.Parent = fill
+
+    local startTime = tick()
+    local connection
+    connection = RunService.Heartbeat:Connect(function()
+        local elapsed = tick() - startTime
+        local ratio = math.clamp(1 - elapsed / duration, 0, 1)
+        fill.Size = UDim2.new(ratio, 0, 1, 0)
+
+        local hue = (elapsed * 120) % 360
+        fill.BackgroundColor3 = HSVtoRGB(hue, 1, 1)
+
+        if ratio <= 0 then
+            connection:Disconnect()
+        end
+    end)
 
     local notification = {
         frame = frame,
