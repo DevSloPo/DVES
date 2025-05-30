@@ -55,16 +55,18 @@ local function initializeGui()
         gui.Name = GUI_NAME
         gui.IgnoreGuiInset = true
         gui.ResetOnSpawn = false
-        gui.DisplayOrder = 1000 -- 确保在顶层
+        gui.DisplayOrder = 1000
         gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
         gui.Parent = playerGui
     end
     return gui
 end
 
+local SCALE = 0.8
+
 local function updateNotificationsPosition()
     for index, notification in ipairs(activeNotifications) do
-        local yOffset = (CONFIG.HEIGHT + CONFIG.SPACING) * (index - 1)
+        local yOffset = (CONFIG.HEIGHT * SCALE + CONFIG.SPACING) * (index - 1)
         notification.frame:TweenPosition(
             UDim2.new(1, -CONFIG.OFFSET.X, 1, -CONFIG.OFFSET.Y - yOffset),
             CONFIG.ANIMATION.EASING_DIRECTION,
@@ -77,8 +79,8 @@ end
 
 local function createProgressAnimation(frame, duration)
     local progressBar = Instance.new("Frame")
-    progressBar.Size = UDim2.new(1, 0, 0, CONFIG.PROGRESS_BAR.HEIGHT)
-    progressBar.Position = UDim2.new(0, 0, 1, -CONFIG.PROGRESS_BAR.HEIGHT)
+    progressBar.Size = UDim2.new(1, 0, 0, CONFIG.PROGRESS_BAR.HEIGHT * SCALE)
+    progressBar.Position = UDim2.new(0, 0, 1, -(CONFIG.PROGRESS_BAR.HEIGHT * SCALE))
     progressBar.BackgroundTransparency = 1
     progressBar.ClipsDescendants = true
     progressBar.ZIndex = 11
@@ -100,18 +102,7 @@ local function createProgressAnimation(frame, duration)
         Size = UDim2.new(0, 0, 1, 0)
     }):Play()
 
-    local hue = 0
-    local connection
-    connection = RunService.RenderStepped:Connect(function()
-        if fill and fill.Parent then
-            hue = (hue + 0.01) % 1
-            fill.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
-        else
-            connection:Disconnect()
-        end
-    end)
-
-    return connection
+    return nil
 end
 
 function Httadmin.send(title, message, duration, iconId)
@@ -128,8 +119,8 @@ function Httadmin.send(title, message, duration, iconId)
     local gui = initializeGui()
 
     local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(0, CONFIG.WIDTH, 0, CONFIG.HEIGHT)
-    frame.Position = UDim2.new(1, -CONFIG.OFFSET.X, 1, -CONFIG.OFFSET.Y)
+    frame.Size = UDim2.new(0, CONFIG.WIDTH * SCALE, 0, CONFIG.HEIGHT * SCALE)
+    frame.Position = UDim2.new(1, 0, 1, -CONFIG.OFFSET.Y)
     frame.AnchorPoint = Vector2.new(1, 1)
     frame.BackgroundColor3 = Color3.new(0, 0, 0)
     frame.BackgroundTransparency = CONFIG.BACKGROUND_TRANSPARENCY
@@ -144,40 +135,30 @@ function Httadmin.send(title, message, duration, iconId)
     local stroke = Instance.new("UIStroke")
     stroke.Thickness = 2
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    stroke.Color = Color3.new(0, 0, 0)
     stroke.Parent = frame
-
-    local hue = 0
-    local borderConnection
-    borderConnection = RunService.RenderStepped:Connect(function()
-        if frame and frame.Parent then
-            hue = (hue + 0.01) % 1
-            stroke.Color = Color3.fromHSV(hue, 1, 1)
-        else
-            borderConnection:Disconnect()
-        end
-    end)
 
     local iconOffset = 0
     if iconId then
         local icon = Instance.new("ImageLabel")
-        icon.Size = CONFIG.ICON.SIZE
-        icon.Position = UDim2.new(0, CONFIG.ICON.OFFSET, 0, CONFIG.ICON.OFFSET)
+        icon.Size = UDim2.new(0, 24 * SCALE, 0, 24 * SCALE)
+        icon.Position = UDim2.new(0, CONFIG.ICON.OFFSET * SCALE, 0, CONFIG.ICON.OFFSET * SCALE)
         icon.BackgroundTransparency = 1
         icon.Image = iconId
         icon.ImageTransparency = 1
         icon.ZIndex = 11
         icon.Parent = frame
-        iconOffset = 40
+        iconOffset = 40 * SCALE
         TweenService:Create(icon, TweenInfo.new(CONFIG.ANIMATION.DURATION), {ImageTransparency = 0}):Play()
     end
 
     local titleLabel = Instance.new("TextLabel")
-    titleLabel.Size = UDim2.new(1, -(iconOffset + 8), 0, 24)
-    titleLabel.Position = UDim2.new(0, iconOffset > 0 and 40 or 8, 0, CONFIG.TITLE.OFFSET)
+    titleLabel.Size = UDim2.new(1, -(iconOffset + 8 * SCALE), 0, 24 * SCALE)
+    titleLabel.Position = UDim2.new(0, iconOffset > 0 and (40 * SCALE) or (8 * SCALE), 0, CONFIG.TITLE.OFFSET * SCALE)
     titleLabel.BackgroundTransparency = 1
     titleLabel.Text = title or "Notification"
     titleLabel.Font = CONFIG.TITLE.FONT
-    titleLabel.TextSize = CONFIG.TITLE.SIZE
+    titleLabel.TextSize = CONFIG.TITLE.SIZE * SCALE
     titleLabel.TextColor3 = CONFIG.TITLE.COLOR
     titleLabel.TextXAlignment = Enum.TextXAlignment.Left
     titleLabel.TextTransparency = 1
@@ -185,12 +166,12 @@ function Httadmin.send(title, message, duration, iconId)
     titleLabel.Parent = frame
 
     local messageLabel = Instance.new("TextLabel")
-    messageLabel.Size = UDim2.new(1, -(iconOffset + 8), 1, -32)
-    messageLabel.Position = UDim2.new(0, iconOffset > 0 and 40 or 8, 0, CONFIG.MESSAGE.OFFSET)
+    messageLabel.Size = UDim2.new(1, -(iconOffset + 8 * SCALE), 1, -32 * SCALE)
+    messageLabel.Position = UDim2.new(0, iconOffset > 0 and (40 * SCALE) or (8 * SCALE), 0, CONFIG.MESSAGE.OFFSET * SCALE)
     messageLabel.BackgroundTransparency = 1
     messageLabel.Text = message or ""
     messageLabel.Font = CONFIG.MESSAGE.FONT
-    messageLabel.TextSize = CONFIG.MESSAGE.SIZE
+    messageLabel.TextSize = CONFIG.MESSAGE.SIZE * SCALE
     messageLabel.TextColor3 = CONFIG.MESSAGE.COLOR
     messageLabel.TextWrapped = true
     messageLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -229,8 +210,7 @@ function Httadmin.send(title, message, duration, iconId)
             end
             updateNotificationsPosition()
         end)
-
-        if borderConnection then borderConnection:Disconnect() end
-        if progressConnection then progressConnection:Disconnect() end
     end)
 end
+
+return Httadmin
