@@ -12,8 +12,8 @@ local GUI_NAME = "NotificationGui"
 local activeNotifications = {}
 
 local CONFIG = {
-    WIDTH = 280,
-    HEIGHT = 50,
+    WIDTH = 200,
+    HEIGHT = 80,
     SPACING = 8,
     OFFSET = Vector2.new(20, 20),
     BACKGROUND_TRANSPARENCY = 0.5,
