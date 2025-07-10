@@ -46,6 +46,13 @@ Tabs.N:Button({
 })
 
 Tabs.N:Button({
+    Title = "黑暗欺骗",
+    Callback = function()
+    loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Darkdeception')))()
+    end
+})
+
+Tabs.N:Button({
     Title = "被遗弃",
     Callback = function()
     loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Forsaken')))()
