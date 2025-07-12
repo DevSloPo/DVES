@@ -45,6 +45,15 @@ Tabs.N:Button({
     end
 })
 
+
+
+Tabs.N:Button({
+    Title = "被遗弃",
+    Callback = function()
+    loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Forsaken')))()
+    end
+})
+
 Tabs.N:Button({
     Title = "黑暗欺骗",
     Callback = function()
@@ -53,9 +62,9 @@ Tabs.N:Button({
 })
 
 Tabs.N:Button({
-    Title = "被遗弃",
+    Title = "CHAIN",
     Callback = function()
-    loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Forsaken')))()
+    loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Chain')))()
     end
 })
 
