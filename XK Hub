@@ -68,6 +68,13 @@ Tabs.N:Button({
     end
 })
 
+Tabs.N:Button({
+    Title = "战争大亨",
+    Callback = function()
+    loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Wartycoon')))()
+    end
+})
+
 Tabs.B:Button({
     Title = "通用",
     Callback = function()
