@@ -1,4 +1,5 @@
 --无所谓了，反正我懒得加密服务器选择，咋滴
+loadstring(game:HttpGet(('https://github.com/DevSloPo/Main/raw/main/Execute%20animation')))()
 
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/DevSloPo/Main/refs/heads/main/main.lua"))()
 
