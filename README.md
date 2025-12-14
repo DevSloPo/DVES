@@ -1,12 +1,5 @@
-# Script China XK Hub
-## Script code
+# XK Hub 加载器
+## 脚本
 
 ```lua
-local scriptUrl = "https://github.com/DevSloPo/Local-player/raw/main/player.luau"
-local success, response = pcall(function()
-    local scriptContent = game:HttpGet(scriptUrl, true)
-    return loadstring(scriptContent)()
-end)
-if not success then
-    game:GetService("TeleportService"):Teleport(game.PlaceId)
-end
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau')))()
