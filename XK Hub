@@ -1,1 +1,6 @@
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau')))()
+local notify = loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Notification/refs/heads/main/Notification-obfuscated.lua'))()
+local startTime = tick()      
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau'))()
+        local endTime = tick()
+        local loadTime = string.format("%.2f", endTime - startTime)
+        notify("XK Hub", "脚本加载完成！耗时: " .. loadTime .. "秒", 5)
