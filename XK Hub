@@ -1,6 +1,43 @@
-local EntityNotify = loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/EntityNotify/refs/heads/main/Notify.lua'))()
+local repo = 'https://raw.githubusercontent.com/DevSloPo/obsidian_UI/main/'
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local playerName = game:GetService("Players").LocalPlayer.Name
+Library:Notify({
+    Title = "XoneScriptK Hub",
+    Description = "欢迎用户: " .. playerName .. " 使用XK Hub丨你的支持是我们最大的动力",
+    Time = 6
+})
+local Sound = Instance.new("Sound")
+Sound.SoundId = "rbxassetid://114852766717197"
+Sound.Parent = game:GetService("SoundService")
+Sound.Volume = 5
+Sound:Play()
+Sound.Ended:Wait()
+Sound:Destroy()
+Library:Notify({
+Title = "XoneScriptK Hub",
+Description = "如果我们的脚本发现BUG,请及时与我反馈，我们会及时修复/优化的",
+Time = 6
+})
+local Sound = Instance.new("Sound")
+Sound.SoundId = "rbxassetid://114852766717197"
+Sound.Parent = game:GetService("SoundService")
+Sound.Volume = 5
+Sound:Play()
+Sound.Ended:Wait()
+Sound:Destroy()
 local startTime = tick()      
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau'))()
-        local endTime = tick()
-        local loadTime = string.format("%.2f", endTime - startTime)
-        EntityNotify.Show("脚本加载完成！耗时: " .. loadTime .. "秒", "97837015726495", 5)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau'))()
+local endTime = tick()
+local loadTime = string.format("%.2f", endTime - startTime)
+Library:Notify({
+    Title = "XoneScriptK Hub",
+    Description = "脚本加载完成！耗时: " .. loadTime .. "秒",
+    Time = 6
+})
+local Sound = Instance.new("Sound")
+Sound.SoundId = "rbxassetid://4989569018"
+Sound.Parent = game:GetService("SoundService")
+Sound.Volume = 5
+Sound:Play()
+Sound.Ended:Wait()
+Sound:Destroy()
