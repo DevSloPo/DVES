@@ -3,20 +3,8 @@ local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local playerName = game:GetService("Players").LocalPlayer.Name
 Library:Notify({
     Title = "XoneScriptK Hub",
-    Description = "欢迎用户: " .. playerName .. " 使用XK Hub丨你的支持是我们最大的动力",
+    Description = "欢迎用户: " .. playerName .. " 丨 正在加载XK Hub 加载器，加入我们的QQ群聊可了解最新情报 х 内容 х 更新",
     Time = 6
-})
-local Sound = Instance.new("Sound")
-Sound.SoundId = "rbxassetid://114852766717197"
-Sound.Parent = game:GetService("SoundService")
-Sound.Volume = 5
-Sound:Play()
-Sound.Ended:Wait()
-Sound:Destroy()
-Library:Notify({
-Title = "XoneScriptK Hub",
-Description = "如果我们的脚本发现BUG,请及时与我反馈，我们会及时修复/优化的",
-Time = 6
 })
 local Sound = Instance.new("Sound")
 Sound.SoundId = "rbxassetid://114852766717197"
@@ -31,7 +19,7 @@ local endTime = tick()
 local loadTime = string.format("%.2f", endTime - startTime)
 Library:Notify({
     Title = "XoneScriptK Hub",
-    Description = "脚本加载完成！耗时: " .. loadTime .. "秒",
+    Description = "加载器加载完成！耗时: " .. loadTime .. "秒",
     Time = 6
 })
 local Sound = Instance.new("Sound")
