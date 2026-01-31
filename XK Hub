@@ -8,7 +8,7 @@ Library:Notify({
 })
 Library:Notify({
 Title = "XoneScriptK Hub丨温馨提示",
-Description = "被遗弃自动格挡预计在今天晚上更新",
+Description = "被遗弃自动格挡已修复",
 Time = 6
 })
 local Sound = Instance.new("Sound")
