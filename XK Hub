@@ -6,18 +6,6 @@ Library:Notify({
     Description = "欢迎用户: " .. playerName .. " 丨 正在加载XK Hub 加载器，加入我们的QQ群聊可了解最新情报 х 内容 х 更新",
     Time = 6
 })
-Library:Notify({
-Title = "XoneScriptK Hub丨温馨提示",
-Description = "被遗弃自动格挡已修复",
-Time = 6
-})
-local Sound = Instance.new("Sound")
-Sound.SoundId = "rbxassetid://114852766717197"
-Sound.Parent = game:GetService("SoundService")
-Sound.Volume = 5
-Sound:Play()
-Sound.Ended:Wait()
-Sound:Destroy()
 local startTime = tick()      
 loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau'))()
 local endTime = tick()
