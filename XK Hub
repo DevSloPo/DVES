@@ -2,8 +2,8 @@ local repo = 'https://raw.githubusercontent.com/DevSloPo/obsidian_UI/main/'
 local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local playerName = game:GetService("Players").LocalPlayer.Name
 Library:Notify({
-    Title = "XoneScriptK Hub",
-    Description = "欢迎用户: " .. playerName .. " 丨 正在加载XK Hub 加载器，加入我们的QQ群聊可了解最新情报 х 内容 х 更新",
+    Title = "msploit",
+    Description = "欢迎用户: " .. playerName .. " 丨 正在加载msploit 加载器，加入我们的QQ群聊可了解最新情报 х 内容 х 更新",
     Time = 6
 })
 local startTime = tick()      
@@ -11,7 +11,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Local-player
 local endTime = tick()
 local loadTime = string.format("%.2f", endTime - startTime)
 Library:Notify({
-    Title = "XoneScriptK Hub",
+    Title = "msploit",
     Description = "加载器加载完成！耗时: " .. loadTime .. "秒",
     Time = 6
 })
