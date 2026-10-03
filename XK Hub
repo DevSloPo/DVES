@@ -3,7 +3,7 @@ local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local playerName = game:GetService("Players").LocalPlayer.Name
 Library:Notify({
     Title = "XK Hub",
-    Description = "欢迎用户: " .. playerName .. " 丨 正在加载XK HUB 遗产 脚本无人接手已经永远停更 群聊无法再加入人",
+    Description = "欢迎用户: " .. playerName .. " 丨 正在加载XK HUB 遗产 遗产正在持续打补丁 官方群:915207093",
     Time = 6
 })
 local startTime = tick()      
