@@ -7,7 +7,6 @@ Library:Notify({
     Time = 6
 })
 local startTime = tick()      
-loadstring(game:HttpGet('https://raw.githubusercontent.com/DevSloPo/Local-player/refs/heads/main/player.luau'))()
 local endTime = tick()
 local loadTime = string.format("%.2f", endTime - startTime)
 Library:Notify({
